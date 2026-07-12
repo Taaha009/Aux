@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1C2E"
+    android:background="#2E2E42"
     android:clipChildren="false"
     android:clipToPadding="false">
 
@@ -27,35 +27,76 @@
         android:clipChildren="false"
         android:clipToPadding="false">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switchMode"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="40dp"
-            android:scaleX="1.8"
-            android:scaleY="1.8"
-            android:textOn="Manual"
-            android:textOff="Auto"
-            android:showText="true"
-            android:switchPadding="16dp"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginBottom="60dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switchOnOff"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auto"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_marginEnd="16dp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:scaleX="1.6"
+                android:scaleY="1.6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manual"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/manualRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="40dp"
-            android:scaleX="1.8"
-            android:scaleY="1.8"
-            android:textOn="On"
-            android:textOff="Off"
-            android:showText="true"
-            android:switchPadding="16dp"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:visibility="gone" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Off"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_marginEnd="16dp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchOnOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:scaleX="1.6"
+                android:scaleY="1.6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="On"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

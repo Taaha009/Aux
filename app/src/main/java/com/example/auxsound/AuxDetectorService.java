@@ -86,15 +86,17 @@ public class AuxDetectorService extends Service {
         String channelId = "aux_detector_channel";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
-                    channelId, "Aux Detector", NotificationManager.IMPORTANCE_LOW);
+                    channelId, "Aux Detector", NotificationManager.IMPORTANCE_MIN);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
         return new NotificationCompat.Builder(this, channelId)
-                .setContentTitle("Aux Sound is active")
-                .setContentText("Listening for AUX/headphone connection")
+                .setContentTitle("")
+                .setContentText("")
                 .setSmallIcon(android.R.drawable.ic_btn_speak_now)
+                .setPriority(NotificationCompat.PRIORITY_MIN)
                 .setOngoing(true)
+                .setSilent(true)
                 .build();
     }
 

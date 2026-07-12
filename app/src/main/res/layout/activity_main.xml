@@ -2,7 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212">
+    android:background="#1C1C2E"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <ImageButton
         android:id="@+id/btnExit"
@@ -21,28 +23,32 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleX="2.2"
-            android:scaleY="2.2"
+            android:padding="40dp"
+            android:scaleX="1.8"
+            android:scaleY="1.8"
             android:textOn="Manual"
             android:textOff="Auto"
             android:showText="true"
             android:switchPadding="16dp"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
-            android:layout_marginBottom="70dp" />
+            android:layout_marginBottom="60dp" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchOnOff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleX="2.2"
-            android:scaleY="2.2"
+            android:padding="40dp"
+            android:scaleX="1.8"
+            android:scaleY="1.8"
             android:textOn="On"
             android:textOff="Off"
             android:showText="true"

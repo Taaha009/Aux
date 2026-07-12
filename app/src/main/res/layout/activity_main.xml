@@ -3,15 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <ImageButton
         android:id="@+id/btnExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="top|start"
         android:layout_margin="16dp"
-        android:text="Exit"
+        android:src="@android:drawable/ic_lock_power_off"
+        android:background="@android:drawable/btn_default"
         android:backgroundTint="#F44336"
-        android:textColor="#FFFFFF" />
+        android:tint="#FFFFFF"
+        android:contentDescription="Exit" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,49 +27,30 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:gravity="center"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="40dp"
             android:text="Aux Sound" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textOn="Manual"
+            android:textOff="Auto"
+            android:showText="true"
+            android:switchPadding="12dp"
+            android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/btnAuto"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Auto" />
-
-            <Button
-                android:id="@+id/btnManual"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Manual" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/manualRow"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchOnOff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
-            android:visibility="gone">
-
-            <Button
-                android:id="@+id/btnOff"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Off" />
-
-            <Button
-                android:id="@+id/btnOn"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="On" />
-
-        </LinearLayout>
+            android:layout_marginTop="24dp"
+            android:textOn="On"
+            android:textOff="Off"
+            android:showText="true"
+            android:switchPadding="12dp"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

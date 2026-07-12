@@ -1,58 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:layout_height="match_parent">
 
-    <TextView
+    <Button
+        android:id="@+id/btnExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_marginBottom="32dp"
-        android:text="Aux Sound" />
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:text="Exit"
+        android:backgroundTint="#F44336"
+        android:textColor="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <Button
-            android:id="@+id/btnAuto"
-            android:layout_width="120dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Auto" />
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginBottom="32dp"
+            android:text="Aux Sound" />
 
-        <Button
-            android:id="@+id/btnManual"
-            android:layout_width="120dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Manual" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAuto"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Auto" />
+
+            <Button
+                android:id="@+id/btnManual"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Manual" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/manualRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnOff"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Off" />
+
+            <Button
+                android:id="@+id/btnOn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="On" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/manualRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/btnOff"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Off" />
-
-        <Button
-            android:id="@+id/btnOn"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="On" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</FrameLayout>

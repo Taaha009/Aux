@@ -92,7 +92,9 @@
                 android:layout_height="wrap_content"
                 android:padding="28dp"
                 android:scaleX="2.0"
-                android:scaleY="2.0" />
+                android:scaleY="2.0"
+                app:trackTint="@color/switch_track_selector"
+                app:thumbTint="#FFFFFF" />
 
             <TextView
                 android:layout_width="90dp"

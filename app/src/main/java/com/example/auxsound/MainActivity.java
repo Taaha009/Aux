@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void applyModeUI(String mode) {
-        switchOnOff.setVisibility(mode.equals("manual") ? View.VISIBLE : View.GONE);
+        findViewById(R.id.manualRow).setVisibility(mode.equals("manual") ? View.VISIBLE : View.GONE);
     }
 
     private void startAuxService() {

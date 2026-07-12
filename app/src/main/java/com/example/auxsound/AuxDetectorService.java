@@ -20,6 +20,7 @@ public class AuxDetectorService extends Service {
     private static final int NOTIFICATION_ID = 101;
     private MediaPlayer mediaPlayer;
     private BroadcastReceiver headsetReceiver;
+    private boolean isFirstBroadcast = true;
 
     @Override
     public void onCreate() {
@@ -43,6 +44,10 @@ public class AuxDetectorService extends Service {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (AudioManager.ACTION_HEADSET_PLUG.equals(intent.getAction())) {
+                    if (isFirstBroadcast) {
+                        isFirstBroadcast = false;
+                        return;
+                    }
                     int state = intent.getIntExtra("state", -1);
                     if (state == 1) {
                         playSound();

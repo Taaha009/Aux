@@ -8,8 +8,7 @@
     <application
         android:allowBackup="true"
         android:label="Aux Sound"
-        android:theme="@android:style/Theme.Material.Light">
-
+        android:theme="@style/Theme.AppCompat.Light">
         <activity
             android:name=".MainActivity"
             android:exported="true">

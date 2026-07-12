@@ -8,7 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.AudioDeviceInfo;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -62,28 +62,27 @@ public class AuxDetectorService extends Service {
     private void playSound() {
         if (mediaPlayer != null) {
             mediaPlayer.release();
+            mediaPlayer = null;
         }
-        mediaPlayer = MediaPlayer.create(this, R.raw.aux_sound);
+
+        AudioAttributes attributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION_EVENT)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        mediaPlayer = MediaPlayer.create(
+                this,
+                R.raw.aux_sound,
+                attributes,
+                getSystemService(AudioManager.class).generateAudioSessionId()
+        );
+
         if (mediaPlayer != null) {
-            forceSpeakerOutput();
             mediaPlayer.setOnCompletionListener(mp -> {
                 mp.release();
                 mediaPlayer = null;
             });
             mediaPlayer.start();
-        }
-    }
-
-    private void forceSpeakerOutput() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            AudioDeviceInfo[] devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
-            for (AudioDeviceInfo device : devices) {
-                if (device.getType() == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER) {
-                    mediaPlayer.setPreferredDevice(device);
-                    break;
-                }
-            }
         }
     }
 

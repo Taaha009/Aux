@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioAttributes;
+import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -20,12 +21,16 @@ public class AuxDetectorService extends Service {
     private static final int NOTIFICATION_ID = 101;
     private MediaPlayer mediaPlayer;
     private BroadcastReceiver headsetReceiver;
-    private boolean isFirstBroadcast = true;
+
+    private boolean lastKnownPlugged = false;
+    private long lastPlaybackTime = 0;
+    private static final long MIN_INTERVAL_MS = 2000;
 
     @Override
     public void onCreate() {
         super.onCreate();
         startForeground(NOTIFICATION_ID, buildNotification());
+        lastKnownPlugged = isHeadsetCurrentlyPlugged();
         registerHeadsetReceiver();
     }
 
@@ -39,19 +44,36 @@ public class AuxDetectorService extends Service {
         return null;
     }
 
+    private boolean isHeadsetCurrentlyPlugged() {
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        AudioDeviceInfo[] devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+        for (AudioDeviceInfo device : devices) {
+            int type = device.getType();
+            if (type == AudioDeviceInfo.TYPE_WIRED_HEADSET
+                    || type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void registerHeadsetReceiver() {
         headsetReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (AudioManager.ACTION_HEADSET_PLUG.equals(intent.getAction())) {
-                    if (isFirstBroadcast) {
-                        isFirstBroadcast = false;
-                        return;
-                    }
                     int state = intent.getIntExtra("state", -1);
-                    if (state == 1) {
-                        playSound();
+                    boolean nowPlugged = (state == 1);
+
+                    if (nowPlugged && !lastKnownPlugged) {
+                        long now = System.currentTimeMillis();
+                        if (now - lastPlaybackTime > MIN_INTERVAL_MS) {
+                            lastPlaybackTime = now;
+                            playSound();
+                        }
                     }
+
+                    lastKnownPlugged = nowPlugged;
                 }
             }
         };
@@ -66,7 +88,7 @@ public class AuxDetectorService extends Service {
         }
 
         AudioAttributes attributes = new AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_NOTIFICATION_EVENT)
+                .setUsage(AudioAttributes.USAGE_ALARM)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                 .build();
 

@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnAuto, btnManual, btnOff, btnOn;
+    private Button btnAuto, btnManual, btnOff, btnOn, btnExit;
     private LinearLayout manualRow;
 
     private static final String PREFS = "aux_prefs";
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         btnManual = findViewById(R.id.btnManual);
         btnOff = findViewById(R.id.btnOff);
         btnOn = findViewById(R.id.btnOn);
+        btnExit = findViewById(R.id.btnExit);
         manualRow = findViewById(R.id.manualRow);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         btnManual.setOnClickListener(v -> setMode("manual"));
         btnOff.setOnClickListener(v -> setManualState("off"));
         btnOn.setOnClickListener(v -> setManualState("on"));
+        btnExit.setOnClickListener(v -> exitApp());
 
         String savedMode = getPrefs().getString(KEY_MODE, "auto");
         String savedManualState = getPrefs().getString(KEY_MANUAL_STATE, "off");
@@ -125,5 +127,11 @@ public class MainActivity extends AppCompatActivity {
     private void stopAuxService() {
         Intent serviceIntent = new Intent(this, AuxDetectorService.class);
         stopService(serviceIntent);
+    }
+
+    private void exitApp() {
+        stopAuxService();
+        finishAffinity();
+        System.exit(0);
     }
 }

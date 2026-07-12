@@ -11,6 +11,48 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:gravity="center"
-        android:text="Aux Sound is running.\nSound plays when AUX/headphones are plugged in." />
+        android:layout_marginBottom="32dp"
+        android:text="Aux Sound" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAuto"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Auto" />
+
+        <Button
+            android:id="@+id/btnManual"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Manual" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/manualRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnOff"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Off" />
+
+        <Button
+            android:id="@+id/btnOn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="On" />
+
+    </LinearLayout>
 
 </LinearLayout>
